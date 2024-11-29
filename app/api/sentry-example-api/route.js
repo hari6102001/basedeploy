@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 
-export const dynamic = "force-dynamic";
+// Remove the dynamic directive
+// export const dynamic = "force-dynamic";
 
-// A faulty API route to test Sentry's error monitoring
+// Refactor to provide a static response
 export function GET() {
-  throw new Error("Sentry Example API Route Error");
-  return NextResponse.json({ data: "Testing Sentry Error..." });
+  return NextResponse.json({ data: "This is a static response for testing." });
 }
