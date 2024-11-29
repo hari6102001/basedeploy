@@ -2,7 +2,7 @@ import {withSentryConfig} from '@sentry/nextjs';
 import { output } from 'three/webgpu';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    output:"export",
+    output:"export"
 };
 
 export default withSentryConfig(nextConfig, {
