@@ -52,8 +52,8 @@ export const BentoGridItem = ({
   titleClassName?: string;
   spareImg?: string;
 }) => {
-  const leftLists = ["ReactJS", "Express", "Typescript"];
-  const rightLists = ["VueJS", "NuxtJS", "GraphQL"];
+  const leftLists = ["INK FILLING M/C", "JIG &FIXTURE ", "DESIGN SERVICE"];
+  const rightLists = ["MANUFACTURING OF SPM M/C", "CONTROL PANEL WORK", "CONVEYORS"];
 
   const [copied, setCopied] = useState(false);
 
@@ -67,7 +67,7 @@ export const BentoGridItem = ({
   };
 
   const handleCopy = () => {
-    const text = "hsu@jsmastery.pro";
+    const text = "ossautomation@gmail.com";
     navigator.clipboard.writeText(text);
     setCopied(true);
   };
@@ -90,13 +90,14 @@ export const BentoGridItem = ({
       {/* add img divs */}
       <div className={`${id === 6 && "flex justify-center"} h-full`}>
         <div className="w-full h-full absolute">
+          <div className={`${id === 1 } opacity-40`}>
           {img && (
             <img
               src={img}
               alt={img}
               className={cn(imgClassName, "object-cover object-center ")}
             />
-          )}
+          )}</div>
         </div>
         <div
           className={`absolute right-0 -bottom-5 ${id === 5 && "w-full opacity-80"
@@ -131,7 +132,7 @@ export const BentoGridItem = ({
           {/* add text-3xl max-w-96 , remove text-neutral-600 dark:text-neutral-300*/}
           {/* remove mb-2 mt-2 */}
           <div
-            className={`font-sans text-lg lg:text-3xl max-w-96 font-bold z-10`}
+            className={`font-sans text-lg lg:text-2xl  font-bold z-10`}
           >
             {title}
           </div>
@@ -140,10 +141,10 @@ export const BentoGridItem = ({
           {id === 2 && <GridGlobe />}
 
           {/* Tech stack list div */}
-          {id === 3 && (
-            <div className="flex gap-1 lg:gap-5 w-fit absolute -right-3 lg:-right-2">
+          {id === 5 && (
+            <div className="flex gap-1 lg:gap-3 w-fit absolute left-1/2 -translate-x-1/2 pl-20">
               {/* tech stack lists */}
-              <div className="flex flex-col gap-3 md:gap-3 lg:gap-8">
+              {/* <div className="flex flex-col gap-3 md:gap-3 lg:gap-6">
                 {leftLists.map((item, i) => (
                   <span
                     key={i}
@@ -166,7 +167,7 @@ export const BentoGridItem = ({
                     {item}
                   </span>
                 ))}
-              </div>
+              </div> */}
             </div>
           )}
           {id === 6 && (
@@ -182,9 +183,9 @@ export const BentoGridItem = ({
                 {/* <img src="/confetti.gif" alt="confetti" /> */}
                 <Lottie options={defaultOptions} height={200} width={400} />
               </div>
-
+              
               <MagicButton
-                title={copied ? "Email is Copied!" : "Copy my email address"}
+                title={copied ? "Email is Copied!" : "Copy our email address"}
                 icon={<IoCopyOutline />}
                 position="left"
                 handleClick={handleCopy}
