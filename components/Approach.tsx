@@ -80,6 +80,18 @@ const Card = ({
   des: string;
 }) => {
   const [hovered, setHovered] = React.useState(false);
+  
+  // Add useEffect for automatic triggering
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setHovered(true);
+      // Reset after 1.5 seconds
+      setTimeout(() => setHovered(false), 1500);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div
       onMouseEnter={() => setHovered(true)}
@@ -119,6 +131,7 @@ const Card = ({
           // absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]
           className="text-center group-hover/canvas-card:-translate-y-4 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] 
         group-hover/canvas-card:opacity-0 transition duration-200 min-w-40 mx-auto flex items-center justify-center"
+          style={{ opacity: hovered ? 0 : 1 }}
         >
           {icon}
         </div>
@@ -127,6 +140,11 @@ const Card = ({
           className="dark:text-white text-center text-3xl opacity-0 group-hover/canvas-card:opacity-100
          relative z-10 text-black mt-4  font-bold group-hover/canvas-card:text-white 
          group-hover/canvas-card:-translate-y-2 transition duration-200"
+          style={{ 
+            opacity: hovered ? 1 : 0,
+            color: hovered ? 'white' : 'black',
+            transform: hovered ? 'translateY(-8px)' : 'none'
+          }}
         >
           {title}
         </h2>
@@ -135,7 +153,11 @@ const Card = ({
           className="text-sm opacity-0 group-hover/canvas-card:opacity-100
          relative z-10 mt-4 group-hover/canvas-card:text-white text-center
          group-hover/canvas-card:-translate-y-2 transition duration-200"
-          style={{ color: "#E4ECFF" }}
+          style={{ 
+            opacity: hovered ? 1 : 0,
+            color: "#E4ECFF",
+            transform: hovered ? 'translateY(-8px)' : 'none'
+          }}
         >
           {des}
         </p>

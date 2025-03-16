@@ -36,6 +36,7 @@ const Footer = () => {
 
       <div className="flex flex-col items-center">
         <h1 className="heading lg:max-w-[45vw]">
+          <img className="w-22 h-12 rounded-lg mx-auto mb-4 object-cover" src="./oss.jpg"/>
           <span className="text-purple">OM SRI SAI AUTOMATION </span>
         </h1>
         <p className="text-white-600  text-3xl md:mt-10 my-5 text-center">
@@ -56,12 +57,13 @@ const Footer = () => {
             otherClasses="!bg-[#161A31]"
           />
         </a>
+        
       </div>
       <div className="flex mt-16 md:flex-row flex-col justify-between items-center">
-        <p className="md:text-base text-sm md:font-normal font-light">
+        <p className="md:text-base text-sm md:font-normal font-light mr-20">
           Copyright © 2024 OSS Automation
         </p>
-
+        <img className="w-60 h-60 rounded-lg mx-auto mt-5 mb-1 object-cover ml-40 pl-20 pr-10" src="./iso.png"/>
         <div className="flex items-center md:gap-3 gap-6">
           {socialMedia.map((info) => (
             <a

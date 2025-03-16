@@ -1,5 +1,8 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { IoCopyOutline } from "react-icons/io5";
+import { TypeAnimation } from 'react-type-animation';
+import CountUp from "react-countup";
+import Confetti from "react-confetti";
 
 // Also install this npm i --save-dev @types/react-lottie
 import Lottie from "react-lottie";
@@ -52,6 +55,15 @@ export const BentoGridItem = ({
   titleClassName?: string;
   spareImg?: string;
 }) => {
+  const expertiseFields = [
+    { title: "INK FILLING M/C", icon: "🔧" },
+    { title: "JIG & FIXTURE", icon: "⚙️" },
+    { title: "DESIGN SERVICE", icon: "📐" },
+    { title: "MANUFACTURING OF SPM M/C", icon: "🏭" },
+    { title: "CONTROL PANEL WORK", icon: "🎛️" },
+    { title: "CONVEYORS", icon: "⚡" }
+  ];
+
   const leftLists = ["INK FILLING M/C", "JIG &FIXTURE ", "DESIGN SERVICE"];
   const rightLists = ["MANUFACTURING OF SPM M/C", "CONTROL PANEL WORK", "CONVEYORS"];
 
@@ -82,10 +94,12 @@ export const BentoGridItem = ({
       style={{
         //   add these two
         //   you can generate the color from here https://cssgradient.io/
-        background: "rgb(4,7,29)",
-        backgroundColor:
-          "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
+        background: "rgba(4, 7, 29, 0.4)",
+        backdropFilter: "blur(10px)",
+        WebkitBackdropFilter: "blur(10px)",
       }}
+
+      
     >
       {/* add img divs */}
       <div className={`${id === 6 && "flex justify-center"} h-full`}>
@@ -112,6 +126,7 @@ export const BentoGridItem = ({
             />
           )}
         </div>
+        
         {id === 6 && (
           // add background animation , remove the p tag
           <BackgroundGradientAnimation>
@@ -140,34 +155,90 @@ export const BentoGridItem = ({
           {/* for the github 3d globe */}
           {id === 2 && <GridGlobe />}
 
+       {/* Special Effect div for id 3 & 4 (Smoke + Glass + Animation) */}
+{(id === 4) && (
+  <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+    {/* Smoke Effect */}
+    <div className="absolute inset-0 smoke-effect"></div>
+
+    {/* Color-Changing Glassmorphism Overlay */}
+    <div className="absolute inset-0 glass-overlay"></div>
+
+    {/* Animated Text */}
+    <TypeAnimation
+      sequence={[
+        "We can do any customized designs and manufacturing automation machines ,We are ISO certified and Registered organisation, Always deliver standardized and customized client requirements without delays...", // First message
+        2000
+      ]}
+      wrapper="h2"
+      className="text-xl md:text-2xl font-light text-pink-200 text-center relative z-10"
+      speed={50}
+      repeat={Infinity} // Loop infinitely
+    />
+  </div>
+)}
+
+{(id === 3) && (
+  <div className="absolute inset-0 flex flex-col items-center justify-center overflow-hidden glass-overlay text-pink-200">
+    {(() => {
+      const stats = [
+        { label: "CLIENTS", target: 100, emoji: "👥" },
+        { label: "DELIVERIES", target: 95, emoji: "🚚" },
+        { label: "AWARDS", target: 55, emoji: "🏆" },
+      ];
+
+      const [isComplete, setIsComplete] = useState(false);
+      let completedCount = 0;
+
+      return (
+        <div>
+          {stats.map((stat, index) => (
+            <div key={index} className="text-4xl font-bold flex items-center gap-4 my-2">
+              <span className="text-5xl">{stat.emoji}</span>
+              <CountUp 
+                start={0} 
+                end={stat.target} 
+                duration={3} 
+                onEnd={() => {
+                  completedCount++;
+                  if (completedCount === stats.length) {
+                    setIsComplete(true);
+                  }
+                }} 
+              />
+              <span>{stat.label}</span>
+            </div>
+          ))}
+
+          {isComplete && (
+            <>
+              <Confetti width={window.innerWidth} height={window.innerHeight} numberOfPieces={200} />
+              <div className=" mt-5 animate-pulse">🎉 Celebrating 100+ client delivery🎉</div>
+            </>
+          )}
+        </div>
+      );
+    })()}
+  </div>
+)}
+
+
+
+
           {/* Tech stack list div */}
           {id === 5 && (
-            <div className="flex gap-1 lg:gap-3 w-fit absolute left-1/2 -translate-x-1/2 pl-20">
-              {/* tech stack lists */}
-              {/* <div className="flex flex-col gap-3 md:gap-3 lg:gap-6">
-                {leftLists.map((item, i) => (
-                  <span
-                    key={i}
-                    className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-50 
-                    lg:opacity-100 rounded-lg text-center bg-[#10132E]"
-                  >
-                    {item}
-                  </span>
-                ))}
-                <span className="lg:py-4 lg:px-3 py-4 px-3  rounded-lg text-center bg-[#10132E]"></span>
-              </div>
-              <div className="flex flex-col gap-3 md:gap-3 lg:gap-8">
-                <span className="lg:py-4 lg:px-3 py-4 px-3  rounded-lg text-center bg-[#10132E]"></span>
-                {rightLists.map((item, i) => (
-                  <span
-                    key={i}
-                    className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-50 
-                    lg:opacity-100 rounded-lg text-center bg-[#10132E]"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div> */}
+            <div className="grid grid-cols-2 gap-4 p-6 relative z-10">
+              {expertiseFields.map((field, index) => (
+                <div
+                  key={index}
+                  className="bg-white/10 backdrop-blur-md rounded-lg p-4 hover:bg-white/20 transition-all duration-300 cursor-pointer"
+                >
+                  <div className="text-2xl mb-2">{field.icon}</div>
+                  <div className="text-white/90 text-sm font-medium">
+                    {field.title}
+                  </div>
+                </div>
+              ))}
             </div>
           )}
           {id === 6 && (

@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
+import { TypeAnimation } from 'react-type-animation';
 
 const World = dynamic(() => import("./Globe").then((m) => m.World), {
   ssr: false,
@@ -395,41 +396,61 @@ const GridGlobe = () => {
   ];
 
   return (
-    // remove dark:bg-black bg-white h-screen md:h-auto  w-full flex-row py-20
-    // change absolute -left-5 top-36, add w-full h-full md:top-40
-    <div className="flex items-center justify-center absolute -left-5 top-36 md:top-40 w-full h-full">
-      {/* remove h-full md:h-[40rem] */}
-      <div className="max-w-7xl mx-auto w-full relative overflow-hidden h-96 px-4">
-        {/* remove these text divs */}
-        {/* <motion.div
-          initial={{
-            opacity: 0,
-            y: 20,
+    <div className="flex flex-col items-center justify-center absolute inset-0">
+      {/* Text Container */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        className="relative z-30 w-full max-w-3xl mx-auto px-4 mb-12"
+      >
+        {/* Added Title */}
+        <h1 className="text-center text-2xl md:text-3xl font-bold mb-4 bg-gradient-to-r from-white to-pink-200 bg-clip-text text-transparent" style={{ textTransform: 'uppercase' }}>
+          SUCCESSFULLY HANDLED 100+ CLIENT DELIVERIES ACROSS GLOBE
+        </h1>
+
+        <div 
+          className="rounded-xl p-6"
+          style={{
+            background: 'rgba(255, 255, 255, 0.03)',
+            backdropFilter: 'blur(10px)',
+            border: '1px solid rgba(255, 255, 255, 0.05)',
           }}
-          animate={{
-            opacity: 1,
-            y: 0,
-          }}
-          transition={{
-            duration: 1,
-          }}
-          className="div"
         >
-          <h2 className="text-center text-xl md:text-4xl font-bold text-black dark:text-white">
-            We sell soap worldwide
-          </h2>
-          <p className="text-center text-base md:text-lg font-normal text-neutral-700 dark:text-neutral-200 max-w-md mt-2 mx-auto">
-            This globe is interactive and customizable. Have fun with it, and
-            don&apos;t forget to share it.
-          </p>
-        </motion.div> */}
-        <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-white z-40" />
-        {/* remove -bottom-20 */}
-        <div className="absolute w-full h-72 md:h-full z-10">
+          
+          <TypeAnimation
+            sequence={[
+              '10+ YEARS OF INDUSTRIAL EXPERIENCE AND EXPERTISED ON HANDLING MULTINATIONAL CLIENTS. WE WERE ESTABLISHED IN JULY 2013 WITH THE GOAL OF PROVIDING HIGH-QUALITY AUTOMATION AND SERVICE SUPPORT TO INDUSTRIES.',
+              1000,
+              'WE OFFER THE LATEST TECHNOLOGY IN DESIGN ENGINEERING, TESTING, INSTALLATION, ERECTION, COMMISSIONING, TROUBLESHOOTING, AND AMC SERVICES.',
+              2000,
+            ]}
+            wrapper="h2"
+            speed={50}
+            className="text-center text-xl md:text-2xl font-light bg-gradient-to-br from-white via-white to-pink-300 bg-clip-text text-transparent"
+            repeat={Infinity}
+            style={{ textTransform: 'uppercase' }}
+          />
+        </div>
+                
+      </motion.div>
+
+      {/* Globe Container */}
+      <div className="absolute inset-0 z-10">
+        <div className="relative w-full h-full">
           <World data={sampleArcs} globeConfig={globeConfig} />
         </div>
       </div>
+
+      {/* Gradient Overlay */}
+      <div 
+        className="absolute bottom-0 inset-x-0 h-40 z-20 pointer-events-none"
+        style={{
+          background: 'linear-gradient(to bottom, transparent, rgba(4, 7, 29, 0.8))'
+        }}
+      />
     </div>
   );
 };
+
 export default GridGlobe;
