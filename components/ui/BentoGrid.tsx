@@ -63,6 +63,24 @@ export const BentoGridItem = ({
     { title: "CONTROL PANEL WORK", icon: "🎛️" },
     { title: "CONVEYORS", icon: "⚡" }
   ];
+  const stats = [
+    { label: "CLIENTS", target: 100, emoji: "👥" },
+    { label: "DELIVERIES", target: 95, emoji: "🚚" },
+    { label: "AWARDS", target: 55, emoji: "🏆" },
+  ];
+
+  const [completedCount, setCompletedCount] = useState(0);
+  const [isComplete, setIsComplete] = useState(false);
+
+  const handleCountComplete = () => {
+    setCompletedCount((prev) => {
+      const newCount = prev + 1;
+      if (newCount === stats.length) {
+        setIsComplete(true);
+      }
+      return newCount;
+    });
+  };
 
   const leftLists = ["INK FILLING M/C", "JIG &FIXTURE ", "DESIGN SERVICE"];
   const rightLists = ["MANUFACTURING OF SPM M/C", "CONTROL PANEL WORK", "CONVEYORS"];
@@ -180,49 +198,27 @@ export const BentoGridItem = ({
 
 {(id === 3) && (
   <div className="absolute inset-0 flex flex-col items-center justify-center overflow-hidden glass-overlay text-pink-200">
-    {(() => {
-      const stats = [
-        { label: "CLIENTS", target: 100, emoji: "👥" },
-        { label: "DELIVERIES", target: 95, emoji: "🚚" },
-        { label: "AWARDS", target: 55, emoji: "🏆" },
-      ];
+    {stats.map((stat, index) => (
+      <div key={index} className="text-4xl font-bold flex items-center gap-4 my-2">
+        <span className="text-5xl">{stat.emoji}</span>
+        <CountUp
+          start={0}
+          end={stat.target}
+          duration={3}
+          onEnd={() => handleCountComplete()}
+        />
+        <span>{stat.label}</span>
+      </div>
+    ))}
 
-      const [isComplete, setIsComplete] = useState(false);
-      let completedCount = 0;
-
-      return (
-        <div>
-          {stats.map((stat, index) => (
-            <div key={index} className="text-4xl font-bold flex items-center gap-4 my-2">
-              <span className="text-5xl">{stat.emoji}</span>
-              <CountUp 
-                start={0} 
-                end={stat.target} 
-                duration={3} 
-                onEnd={() => {
-                  completedCount++;
-                  if (completedCount === stats.length) {
-                    setIsComplete(true);
-                  }
-                }} 
-              />
-              <span>{stat.label}</span>
-            </div>
-          ))}
-
-          {isComplete && (
-            <>
-              <Confetti width={window.innerWidth} height={window.innerHeight} numberOfPieces={200} />
-              <div className=" mt-5 animate-pulse">🎉 Celebrating 100+ client delivery🎉</div>
-            </>
-          )}
-        </div>
-      );
-    })()}
+    {isComplete && (
+      <>
+        <Confetti width={window.innerWidth} height={window.innerHeight} numberOfPieces={200} />
+        <div className="mt-5 animate-pulse">🎉 Celebrating 100+ client delivery🎉</div>
+      </>
+    )}
   </div>
 )}
-
-
 
 
           {/* Tech stack list div */}
