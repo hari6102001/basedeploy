@@ -29,7 +29,7 @@ const HeroSection = () => {
     const timer = setTimeout(() => {
       animateCount(setClientCount, 50, 2000);
       animateCount(setDeliveryCount, 100, 2500);
-      animateCount(setAwardCount, 55, 1800);
+      animateCount(setAwardCount, 15, 1800);
     }, 1000);
 
     return () => clearTimeout(timer);
@@ -163,7 +163,7 @@ const HeroSection = () => {
                 <div className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-inter font-black mb-2 xs:mb-3 sm:mb-4 text-white drop-shadow-2xl text-glow">
                   {awardCount}+
                 </div>
-                <div className="text-blue-100 text-base xs:text-lg sm:text-xl md:text-2xl font-inter font-semibold drop-shadow-lg">Awards</div>
+                <div className="text-blue-100 text-base xs:text-lg sm:text-xl md:text-2xl font-inter font-semibold drop-shadow-lg">Years of Experience</div>
               </div>
             </div>
           </div>

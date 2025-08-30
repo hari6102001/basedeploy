@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -123,7 +122,8 @@ All colors MUST be HSL.
   }
 
   .text-glow {
-    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+    text-shadow: 0 0 0px currentColor, 0 0 0.5px currentColor, 0 0 4px currentColor;
+    /* text-shadow: 0 0 0px currentColor, 0 0 0px currentColor, 0 0 8px currentColor; */
   }
 
   .box-glow {
@@ -145,9 +145,12 @@ All colors MUST be HSL.
 }
 
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-10px);
   }
@@ -157,6 +160,7 @@ All colors MUST be HSL.
   from {
     filter: brightness(1) blur(0px);
   }
+
   to {
     filter: brightness(1.2) blur(1px);
   }
@@ -166,9 +170,11 @@ All colors MUST be HSL.
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }

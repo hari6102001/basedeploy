@@ -6,20 +6,20 @@ const TestimonialsSection = () => {
   const [sectionRef, inView] = useInView(0.2);
   const testimonials = [
     {
-      company: "Cello",
-      position: "Head of OSS Automation",
+      company: "GM pens",
+      position: "Client Manager",
       content: "They provide customized solutions tailored to meet specific operational needs. Their expertise in automation has significantly improved our manufacturing efficiency and productivity.",
       rating: 5
     },
     {
       company: "Whirlpool",
-      position: "Director of OSS Automation",
+      position: "Client Manager",
       content: "An automation manufacturing company specializes in designing, developing, and implementing advanced systems that have transformed our production capabilities and operational excellence.",
       rating: 5
     },
     {
-      company: "TVS Motors",
-      position: "Manager of OSS Automation",
+      company: "Rialto",
+      position: "Client Manager",
       content: "They deploy a wide range of technologies to streamline production lines and enhance workplace safety. Their innovative solutions have been instrumental in our success.",
       rating: 5
     }

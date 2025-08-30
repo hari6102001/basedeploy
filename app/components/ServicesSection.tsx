@@ -1,5 +1,5 @@
 
-import { Wrench, Cog, Truck, Zap, Settings,Layout } from 'lucide-react';
+import { Wrench, Cog, Factory , Zap, Settings,Layout } from 'lucide-react';
 import { useInView } from '../hooks/useScrollAnimation';
 
 const ServicesSection = () => {
@@ -17,8 +17,8 @@ const ServicesSection = () => {
     },
     {
       icon: <Wrench className="h-12 w-12" />,
-      title: "Ink Filling Machine",
-      description: "Precision ink filling machines designed for consistent and accurate dispensing.",
+      title: "Assembly Machines",
+      description: "Automates precise assembly of components to enhance production efficiency",
       gradient: "from-blue-500 to-purple-600",
       hoverGradient: "from-blue-400 to-purple-500",
       iconColor: "text-blue-400"
@@ -34,13 +34,13 @@ const ServicesSection = () => {
     {
       icon: <Zap className="h-12 w-12" />,
       title: "Control Panel Work",
-      description: "Advanced control panel systems for automated machinery and industrial processes.",
+      description: "Advanced control panel systems for automated industrial processes.",
       gradient: "from-yellow-500 to-orange-600",
       hoverGradient: "from-yellow-400 to-orange-500",
       iconColor: "text-yellow-400"
     },
     {
-      icon: <Truck className="h-12 w-12" />,
+      icon: <Factory  className="h-12 w-12" />,
       title: "Conveyors",
       description: "Custom conveyor systems designed for efficient material handling and workflow.",
       gradient: "from-red-500 to-pink-600",

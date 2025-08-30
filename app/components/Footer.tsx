@@ -78,7 +78,7 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-6">Our Services</h4>
             <ul className="space-y-3">
-              <li><span className="text-gray-400">Ink Filling Machines</span></li>
+              <li><span className="text-gray-400">Assembly Machines</span></li>
               <li><span className="text-gray-400">Jig & Fixture Design</span></li>
               <li><span className="text-gray-400">SPM Manufacturing</span></li>
               <li><span className="text-gray-400">Control Panel Work</span></li>
